@@ -87,7 +87,7 @@ const MenuPreview = () => {
         >
           {filtered.map((dish, i) => (
             <motion.div
-              key={dish._id}
+              key={dish.id || dish._id}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.35, delay: i * 0.08 }}
@@ -171,7 +171,7 @@ const MenuPreview = () => {
                 <button
                   onClick={() =>
                     addItem({
-                      id: dish._id,
+                        id: dish.id || dish._id || '',
                       name: dish.name,
                       price: dish.price,
                       image: dish.image,

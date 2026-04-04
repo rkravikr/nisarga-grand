@@ -205,7 +205,7 @@ const MenuPage = () => {
               {filteredDishes.map((dish, i) => (
                 <motion.div
                   layout
-                  key={dish._id}
+                  key={dish.id || dish._id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -303,7 +303,7 @@ const MenuPage = () => {
                       <button
                         onClick={() =>
                           addItem({
-                            id: dish._id,
+                            id: dish.id || dish._id || '',
                             name: dish.name,
                             price: dish.price,
                             image: dish.image,

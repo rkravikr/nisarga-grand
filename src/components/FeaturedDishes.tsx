@@ -58,7 +58,7 @@ const FeaturedDishes = () => {
         >
           {featured.map((dish, idx) => (
             <motion.div
-              key={dish._id}
+              key={dish.id || dish._id}
               custom={idx}
               variants={cardVariants}
               initial="hidden"
