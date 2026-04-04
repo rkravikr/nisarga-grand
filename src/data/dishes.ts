@@ -1,3 +1,4 @@
+// Build trigger: standardized dish interface and resolved build blockers
 export interface Dish {
   _id?: string
   id?: string // Legacy frontend ID / mapping for _id
