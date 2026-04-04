@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { HiOutlineSave } from 'react-icons/hi'
 
 const SettingsView = () => {

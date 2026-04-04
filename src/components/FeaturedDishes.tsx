@@ -1,11 +1,11 @@
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, type Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiOutlineStar, HiOutlineShoppingCart, HiOutlineFire } from 'react-icons/hi'
 import { useAdminStore } from '../store/adminStore'
 import { useCartStore } from '../store/cartStore'
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
     opacity: 1,
@@ -189,7 +189,7 @@ const FeaturedDishes = () => {
                   <button
                     onClick={() =>
                       addItem({
-                        id: dish._id,
+                        id: dish.id || dish._id || '',
                         name: dish.name,
                         price: dish.price,
                         image: dish.image,

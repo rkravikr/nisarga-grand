@@ -28,7 +28,7 @@ const DishManagement = () => {
 
   const handleOpenModal = (dish?: Dish) => {
     if (dish) {
-      setEditingDishId(dish.id)
+      setEditingDishId(dish.id || dish._id || null)
       setFormData({ ...dish })
     } else {
       setEditingDishId(null)
@@ -102,10 +102,9 @@ const DishManagement = () => {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {dishes.map((dish) => {
-                const extendedDish = dish as Dish & { isAvailable?: boolean }
-                const isAvail = extendedDish.isAvailable !== false
+                const isAvail = dish.isAvailable !== false
                 return (
-                  <motion.tr key={dish.id} layout className="hover:bg-gray-50 transition-colors">
+                  <motion.tr key={dish.id || dish._id} layout className="hover:bg-gray-50 transition-colors">
                     <td className="p-4 flex items-center gap-4">
                       <img
                         src={dish.image}
@@ -125,7 +124,7 @@ const DishManagement = () => {
                     <td className="p-4 text-gray-900 font-bold">₹{dish.price}</td>
                     <td className="p-4 text-center">
                       <button
-                        onClick={() => toggleDishAvailability(dish.id)}
+                        onClick={() => toggleDishAvailability(dish.id || dish._id || '', isAvail)}
                         className={`px-3 py-1 text-xs font-bold rounded-full transition-colors ${
                           isAvail ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                         }`}
@@ -145,7 +144,7 @@ const DishManagement = () => {
                         <button
                           onClick={() => {
                             if (window.confirm('Are you sure you want to delete this dish?')) {
-                              deleteDish(dish.id)
+                              deleteDish(dish.id || dish._id || '')
                             }
                           }}
                           className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"

@@ -139,7 +139,7 @@ export const useAdminStore = create<AdminState>()(
         try {
           // Optimistic UI update
           set((state) => ({
-            dishes: state.dishes.map((d) => d.id === id ? { ...d, isAvailable: !currentStatus } : d)
+            dishes: state.dishes.map((d) => (d.id === id || d._id === id) ? { ...d, isAvailable: !currentStatus } : d)
           }))
           await axios.put(`${API_URL}/dishes/${id}`, { isAvailable: !currentStatus })
           // await get().fetchDishes() // Or fetch to sync

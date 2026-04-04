@@ -1,5 +1,6 @@
 export interface Dish {
-  _id: string
+  _id?: string
+  id?: string // Legacy frontend ID / mapping for _id
   name: string
   description: string
   price: number
@@ -10,6 +11,8 @@ export interface Dish {
   isPopular?: boolean
   isBestseller?: boolean
   isNew?: boolean
+  isNewItem?: boolean // Match backend schema
+  isAvailable?: boolean
 }
 
 export const dishes: Dish[] = [
