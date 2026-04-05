@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import axios from 'axios'
-import type { Dish } from '../data/dishes'
+import { type Dish, dishes as staticDishes } from '../data/dishes'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
@@ -74,7 +74,7 @@ export const useAdminStore = create<AdminState>()(
       logout: () => set({ isAuthenticated: false, token: null }),
 
       // Menu
-      dishes: [],
+      dishes: staticDishes,
       categories: [],
       fetchDishes: async () => {
         try {
@@ -88,7 +88,11 @@ export const useAdminStore = create<AdminState>()(
               ? `${API_URL.replace(/\/api\/?$/, '')}${d.image}`
               : d.image
           }))
-          set({ dishes: mapped, isLoading: false })
+          if (mapped.length > 0) {
+            set({ dishes: mapped, isLoading: false })
+          } else {
+            set({ dishes: staticDishes, isLoading: false })
+          }
         } catch (error) {
           console.error('Failed to fetch dishes', error)
           set({ isLoading: false })
