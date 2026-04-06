@@ -332,24 +332,11 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
 
-            {/* Dark Mode Toggle */}
+            {/* Theme Toggle - Desktop only */}
             <button
               id="navbar-dark-mode-btn"
               onClick={toggleTheme}
-              style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'transparent',
-                border: '1px solid var(--color-border)',
-                color: 'var(--color-text)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                fontSize: '1.1rem',
-                transition: 'all 0.2s ease',
-              }}
+              className="hidden lg:flex w-[38px] h-[38px] rounded-[var(--radius-sm)] bg-transparent border border-[var(--color-border)] text-[var(--color-text)] items-center justify-center cursor-pointer text-[1.1rem] transition-all duration-200 hover:bg-[var(--color-border)]"
               aria-label="Toggle dark mode"
             >
               {isDark ? <HiOutlineSun /> : <HiOutlineMoon />}
@@ -413,14 +400,6 @@ const Navbar = () => {
               Order Now
             </NavLink>
 
-            {/* Theme Toggle - Desktop only in main bar */}
-            <button
-              onClick={toggleTheme}
-              className="!hidden lg:!flex w-[38px] h-[38px] rounded-[var(--radius-sm)] bg-transparent border border-[var(--color-border)] text-[var(--color-text)] items-center justify-center cursor-pointer text-[1.2rem] transition-all duration-200 hover:bg-[var(--color-border)]"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <HiOutlineSun /> : <HiOutlineMoon />}
-            </button>
 
             <button
               id="navbar-menu-btn"
