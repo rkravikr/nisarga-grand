@@ -66,9 +66,10 @@ const GalleryPreview = () => {
     <section
       id="gallery-preview"
       ref={ref}
-      style={{ padding: '100px 0', background: 'var(--color-base)' }}
+      style={{ padding: '40px 0', background: 'var(--color-base)' }}
+      className="md:py-24"
     >
-      <div className="container-custom">
+      <div className="px-4 md:px-6 lg:px-8 max-w-[1440px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -85,15 +86,7 @@ const GalleryPreview = () => {
           </p>
         </motion.div>
 
-        {/* Masonry-style Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gridTemplateRows: 'auto auto',
-            gap: '1rem',
-          }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {GALLERY_IMAGES.map((img, i) => (
             <motion.div
               key={img.id}

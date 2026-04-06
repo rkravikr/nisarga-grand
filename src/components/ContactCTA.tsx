@@ -12,11 +12,12 @@ const ContactCTA = () => {
       id="contact-cta"
       ref={ref}
       style={{
-        padding: '100px 0',
+        padding: '40px 0',
         background: 'var(--color-surface)',
         position: 'relative',
         overflow: 'hidden',
       }}
+      className="md:py-24"
     >
       {/* BG Pattern */}
       <div
@@ -29,15 +30,8 @@ const ContactCTA = () => {
         }}
       />
 
-      <div className="container-custom" style={{ position: 'relative' }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4rem',
-            alignItems: 'center',
-          }}
-        >
+      <div className="px-4 md:px-6 lg:px-8 max-w-[1440px] mx-auto" style={{ position: 'relative' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}

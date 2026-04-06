@@ -110,18 +110,14 @@ const Hero = () => {
         </motion.div>
       ))}
 
-      {/* ── Main Content ──────────────────────────── */}
       <div
-        className="container-custom"
+        className="px-4 md:px-6 lg:px-8 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 lg:gap-16 items-center"
         style={{
           position: 'relative',
           zIndex: 10,
-          paddingTop: '100px',
-          paddingBottom: '80px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          alignItems: 'center',
+          paddingTop: '120px',
+          paddingBottom: '100px',
+          gap: '2rem',
         }}
       >
         {/* Left — Text */}
@@ -143,7 +139,7 @@ const Hero = () => {
             style={{
               fontFamily: 'var(--font-heading)',
               fontWeight: 800,
-              fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
+              fontSize: 'clamp(2rem, 8vw, 3.8rem)',
               lineHeight: 1.1,
               color: 'var(--color-text)',
               marginTop: '1rem',
@@ -237,7 +233,7 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0, rotateY: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: 'easeOut' }}
           style={{ perspective: '1000px' }}
-          className="hidden md:block"
+          className="hidden lg:block"
         >
           <div
             style={{
@@ -305,13 +301,9 @@ const Hero = () => {
           zIndex: 10,
         }}
       >
-        <div className="container-custom">
+        <div className="px-4 md:px-6">
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '0',
-            }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-0"
           >
             {STATS.map((stat, i) => (
               <div
@@ -319,8 +311,10 @@ const Hero = () => {
                 style={{
                   padding: '1.25rem 1rem',
                   textAlign: 'center',
-                  borderRight: i < 3 ? '1px solid var(--color-border)' : 'none',
+                  borderRight: '1px solid var(--color-border)',
+                  borderBottom: i < 2 ? '1px solid var(--color-border)' : 'none',
                 }}
+                className="md:border-b-0"
               >
                 <p style={{ margin: 0, fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.5rem', color: 'var(--color-primary)' }}>
                   {stat.value}

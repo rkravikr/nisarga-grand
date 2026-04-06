@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -44,7 +44,18 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [query, setQuery] = useState('')
-  const [suggestions, setSuggestions] = useState<typeof SEARCH_DATA>([])
+  
+  // Derived state for search suggestions
+  const suggestions = useMemo(() => {
+    if (!query.trim()) return []
+    const q = query.toLowerCase()
+    return SEARCH_DATA.filter(
+      (d) =>
+        d.name.toLowerCase().includes(q) ||
+        d.category.toLowerCase().includes(q)
+    ).slice(0, 5)
+  }, [query])
+
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -61,7 +72,6 @@ const Navbar = () => {
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
         setSearchOpen(false)
         setQuery('')
-        setSuggestions([])
       }
     }
     document.addEventListener('mousedown', handler)
@@ -73,23 +83,10 @@ const Navbar = () => {
     if (searchOpen) inputRef.current?.focus()
   }, [searchOpen])
 
-  // Fuzzy search
-  useEffect(() => {
-    if (!query.trim()) return setSuggestions([])
-    const q = query.toLowerCase()
-    const matches = SEARCH_DATA.filter(
-      (d) =>
-        d.name.toLowerCase().includes(q) ||
-        d.category.toLowerCase().includes(q)
-    ).slice(0, 5)
-    setSuggestions(matches)
-  }, [query])
-
   const handleSuggestionClick = (to: string) => {
     navigate(to)
     setSearchOpen(false)
     setQuery('')
-    setSuggestions([])
   }
 
   const cartCount = totalItems()
@@ -110,14 +107,14 @@ const Navbar = () => {
         transition: 'all 0.35s ease',
       }}
     >
-      <div className="container-custom">
+      <div className="px-4 md:px-6 lg:px-8 max-w-[1440px] mx-auto">
         <nav
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             height: '70px',
-            gap: '1rem',
+            gap: '0.5rem',
           }}
         >
           {/* ── Logo ─────────────────────────────────── */}
@@ -176,7 +173,7 @@ const Navbar = () => {
               padding: 0,
               gap: '0.25rem',
             }}
-            className="hidden md:flex"
+            className="hidden lg:flex"
           >
             {NAV_LINKS.map((link) => (
               <li key={link.to}>
@@ -417,7 +414,7 @@ const Navbar = () => {
             </NavLink>
 
             {/* Order CTA (desktop) */}
-            <NavLink to="/order" className="btn-primary hidden md:inline-flex" id="navbar-order-btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.88rem' }}>
+            <NavLink to="/order" className="btn-primary hidden lg:inline-flex" id="navbar-order-btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.88rem' }}>
               Order Now
             </NavLink>
 
@@ -438,7 +435,7 @@ const Navbar = () => {
                 cursor: 'pointer',
                 fontSize: '1.3rem',
               }}
-              className="flex md:hidden"
+              className="flex lg:hidden"
               aria-label="Open menu"
             >
               {menuOpen ? <HiX /> : <HiMenu />}
@@ -462,7 +459,7 @@ const Navbar = () => {
               overflow: 'hidden',
             }}
           >
-            <div className="container-custom" style={{ paddingTop: '1rem', paddingBottom: '1.25rem' }}>
+            <div className="px-4 py-4 md:px-6">
               <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                 {NAV_LINKS.map((link) => (
                   <li key={link.to}>

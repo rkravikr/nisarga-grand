@@ -47,7 +47,7 @@ const ReviewSummary = () => {
           href="https://maps.app.goo.gl/s1MackEYWcQDf6f69" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-6 py-2.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 font-semibold rounded-full transition-colors"
+          className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-400 font-semibold rounded-full transition-colors shadow-md"
         >
           <HiOutlinePencilAlt className="text-lg" /> Write a review
         </a>

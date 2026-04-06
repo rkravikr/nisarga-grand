@@ -27,11 +27,12 @@ const FeaturedDishes = () => {
       id="featured-dishes"
       ref={ref}
       style={{
-        padding: '100px 0',
+        padding: '40px 0',
         background: 'var(--color-base)',
       }}
+      className="md:py-24"
     >
-      <div className="container-custom">
+      <div className="px-4 md:px-6 lg:px-8 max-w-[1440px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -43,7 +44,7 @@ const FeaturedDishes = () => {
           <h2 className="section-title" style={{ marginTop: '0.75rem' }}>
             Our Bestsellers
           </h2>
-          <p className="section-subtitle" style={{ margin: '0.875rem auto 0' }}>
+          <p className="section-subtitle" style={{ margin: '0.875rem auto 0', fontSize: '0.95rem' }}>
             Handpicked by our regulars — the dishes they keep coming back for.
           </p>
         </motion.div>
