@@ -40,11 +40,12 @@ const Hero = () => {
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
         background: 'var(--color-base)',
+        paddingTop: 'clamp(80px, 10vh, 120px)',
       }}
     >
       {/* ── Animated Background Gradient ─────────── */}

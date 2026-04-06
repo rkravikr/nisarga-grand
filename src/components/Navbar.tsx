@@ -164,17 +164,7 @@ const Navbar = () => {
             </div>
           </NavLink>
 
-          {/* ── Desktop Nav Links ─────────────────────── */}
-          <ul
-            style={{
-              display: 'flex',
-              listStyle: 'none',
-              margin: 0,
-              padding: 0,
-              gap: '0.25rem',
-            }}
-            className="hidden lg:flex"
-          >
+          <ul className="hidden lg:flex list-none m-0 p-0 gap-[0.25rem]">
             {NAV_LINKS.map((link) => (
               <li key={link.to}>
                 <NavLink
@@ -418,24 +408,10 @@ const Navbar = () => {
               Order Now
             </NavLink>
 
-            {/* Mobile Hamburger */}
             <button
               id="navbar-menu-btn"
               onClick={() => setMenuOpen((p) => !p)}
-              style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'transparent',
-                border: '1px solid var(--color-border)',
-                color: 'var(--color-text)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                fontSize: '1.3rem',
-              }}
-              className="flex lg:hidden"
+              className="flex lg:hidden w-[38px] h-[38px] rounded-[var(--radius-sm)] bg-transparent border border-[var(--color-border)] text-[var(--color-text)] items-center justify-center cursor-pointer text-[1.3rem]"
               aria-label="Open menu"
             >
               {menuOpen ? <HiX /> : <HiMenu />}

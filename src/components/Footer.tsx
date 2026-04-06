@@ -21,9 +21,9 @@ const Footer = () => {
       }}
     >
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-12 gap-x-8 pb-12 border-b border-white/10">
           {/* Brand - Spans 2 columns to give space to the long address and description */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1rem' }}>
               <div
                 style={{

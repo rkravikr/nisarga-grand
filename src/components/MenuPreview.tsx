@@ -7,7 +7,11 @@ import { useCartStore } from '../store/cartStore'
 
 const MenuPreview = () => {
   const { dishes, categories } = useAdminStore()
-  const [activeCategory, setActiveCategory] = useState(categories[0] || 'All')
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  
+  // Use user-selected category EXPLICITLY, or fallback to the first available category, or 'All'
+  const activeCategory = selectedCategory || categories[0] || 'All'
+
   const addItem = useCartStore((s) => s.addItem)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -19,9 +23,10 @@ const MenuPreview = () => {
       id="menu-preview"
       ref={ref}
       style={{
-        padding: '100px 0',
+        padding: '60px 0',
         background: 'var(--color-base)',
       }}
+      className="md:py-24"
     >
       <div className="container-custom">
         {/* Header */}
@@ -56,7 +61,7 @@ const MenuPreview = () => {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => setSelectedCategory(cat)}
               style={{
                 padding: '0.55rem 1.25rem',
                 borderRadius: '50px',
