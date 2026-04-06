@@ -406,7 +406,7 @@ const Navbar = () => {
             {/* Order CTA (desktop) */}
             <NavLink 
               to="/order" 
-              className={`btn-primary hidden lg:inline-flex ${location.pathname === '/order' ? 'lg:hidden' : ''}`} 
+              className={`btn-primary !hidden lg:!inline-flex ${location.pathname === '/order' ? 'lg:!hidden' : ''}`} 
               id="navbar-order-btn" 
               style={{ padding: '0.5rem 1.2rem', fontSize: '0.88rem' }}
             >
@@ -416,7 +416,7 @@ const Navbar = () => {
             {/* Theme Toggle - Desktop only in main bar */}
             <button
               onClick={toggleTheme}
-              className="hidden sm:flex w-[38px] h-[38px] rounded-[var(--radius-sm)] bg-transparent border border-[var(--color-border)] text-[var(--color-text)] items-center justify-center cursor-pointer text-[1.2rem] transition-all duration-200 hover:bg-[var(--color-border)]"
+              className="!hidden lg:!flex w-[38px] h-[38px] rounded-[var(--radius-sm)] bg-transparent border border-[var(--color-border)] text-[var(--color-text)] items-center justify-center cursor-pointer text-[1.2rem] transition-all duration-200 hover:bg-[var(--color-border)]"
               aria-label="Toggle theme"
             >
               {isDark ? <HiOutlineSun /> : <HiOutlineMoon />}

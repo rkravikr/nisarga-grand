@@ -118,7 +118,7 @@ const Hero = () => {
           position: 'relative',
           zIndex: 10,
           paddingTop: '120px',
-          paddingBottom: '100px',
+          paddingBottom: 'clamp(140px, 15vh, 180px)', // Increased for mobile stats clearance
           gap: '2rem',
         }}
       >
@@ -210,7 +210,9 @@ const Hero = () => {
               border: '1px solid var(--color-border)',
               borderRadius: '50px',
               boxShadow: 'var(--shadow-sm)',
+              marginBottom: '2rem', // Spacing from stats bar on mobile
             }}
+            className="mb-0 lg:mb-7"
           >
             <div style={{ display: 'flex', gap: '2px' }}>
               {[1,2,3,4,5].map((s) => (
