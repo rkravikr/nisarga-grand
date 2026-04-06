@@ -404,9 +404,23 @@ const Navbar = () => {
             </NavLink>
 
             {/* Order CTA (desktop) */}
-            <NavLink to="/order" className="btn-primary hidden lg:inline-flex" id="navbar-order-btn" style={{ padding: '0.5rem 1.2rem', fontSize: '0.88rem' }}>
+            <NavLink 
+              to="/order" 
+              className={`btn-primary hidden lg:inline-flex ${location.pathname === '/order' ? 'lg:hidden' : ''}`} 
+              id="navbar-order-btn" 
+              style={{ padding: '0.5rem 1.2rem', fontSize: '0.88rem' }}
+            >
               Order Now
             </NavLink>
+
+            {/* Theme Toggle - Desktop only in main bar */}
+            <button
+              onClick={toggleTheme}
+              className="hidden sm:flex w-[38px] h-[38px] rounded-[var(--radius-sm)] bg-transparent border border-[var(--color-border)] text-[var(--color-text)] items-center justify-center cursor-pointer text-[1.2rem] transition-all duration-200 hover:bg-[var(--color-border)]"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <HiOutlineSun /> : <HiOutlineMoon />}
+            </button>
 
             <button
               id="navbar-menu-btn"
@@ -459,11 +473,20 @@ const Navbar = () => {
                   </li>
                 ))}
                 <li style={{ marginTop: '0.5rem' }}>
+                  {/* Mobile-only Theme Toggle (inside menu) */}
+                  <button
+                    onClick={toggleTheme}
+                    className="w-full flex items-center justify-between p-[0.75rem] rounded-[var(--radius-md)] border border-[var(--color-border)] text-[var(--color-text)] mt-4"
+                  >
+                    <span className="font-semibold">{isDark ? 'Light Mode' : 'Dark Mode'}</span>
+                    {isDark ? <HiOutlineSun size={20} /> : <HiOutlineMoon size={20} />}
+                  </button>
+
                   <NavLink
                     to="/order"
-                    className="btn-primary"
                     onClick={() => setMenuOpen(false)}
-                    style={{ width: '100%', justifyContent: 'center' }}
+                    className="btn-primary w-full text-center mt-4"
+                    style={{ padding: '0.875rem' }}
                   >
                     Order Now
                   </NavLink>

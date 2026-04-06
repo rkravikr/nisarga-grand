@@ -49,7 +49,7 @@ const OrderPage = () => {
       setIsSuccess(true)
       clearCart()
       window.scrollTo(0, 0)
-    } catch (err) {
+    } catch {
       alert("Error placing order. Please close the page, clear your cart, and try again.")
       setIsSubmitting(false)
     }
@@ -109,10 +109,10 @@ const OrderPage = () => {
   }
 
   return (
-    <main className="min-h-screen pb-20 pt-[100px]" style={{ background: 'var(--color-base)' }}>
+    <main className="min-h-screen pb-20" style={{ background: 'var(--color-base)', paddingTop: 'clamp(80px, 8vh, 100px)' }}>
       <div className="container-custom">
-        <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <Link to="/menu" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', fontWeight: 600, transition: 'color 0.2s' }}>
+        <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center' }}>
+          <Link to="/menu" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--color-text-muted)', fontWeight: 600, fontSize: '0.9rem' }}>
             <HiOutlineArrowLeft /> Back to Menu
           </Link>
         </div>
@@ -152,14 +152,17 @@ const OrderPage = () => {
               <div
                 style={{
                   background: 'var(--color-surface)',
-                  padding: '2rem',
+                  padding: 'clamp(1rem, 5vw, 2rem)',
                   borderRadius: 'var(--radius-xl)',
                   boxShadow: 'var(--shadow-sm)',
                   border: '1px solid var(--color-border)',
                 }}
               >
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, marginBottom: '1.5rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '1rem' }}>
-                  Your Order ({items.length} items)
+                <h3 
+                  className="text-lg md:text-xl"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, marginBottom: '1.25rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '0.75rem' }}
+                >
+                  Your Order ({items.length})
                 </h3>
                 
                 <div className="flex flex-col gap-4">
@@ -243,13 +246,16 @@ const OrderPage = () => {
               <div
                 style={{
                   background: 'var(--color-surface)',
-                  padding: '2rem',
+                  padding: 'clamp(1rem, 5vw, 2rem)',
                   borderRadius: 'var(--radius-xl)',
                   boxShadow: 'var(--shadow-sm)',
                   border: '1px solid var(--color-border)',
                 }}
               >
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, marginBottom: '1.5rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '1rem' }}>
+                <h3 
+                  className="text-lg md:text-xl"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, marginBottom: '1.5rem', borderBottom: '1px solid var(--color-border)', paddingBottom: '1rem' }}
+                >
                   Dining Details
                 </h3>
 

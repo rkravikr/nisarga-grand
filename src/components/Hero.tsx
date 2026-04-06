@@ -95,6 +95,7 @@ const Hero = () => {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
+          className={i % 2 === 0 ? 'hidden md:block' : 'hidden sm:block'}
           style={{
             position: 'absolute',
             left: food.x,

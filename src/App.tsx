@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 import MenuPage from './pages/MenuPage'
 import OrderPage from './pages/OrderPage'
@@ -44,32 +46,44 @@ function AppContent() {
     }
   }, [isDark])
 
-  return (
-    <Routes>
-      <Route element={<CustomerLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Route>
+  const location = useLocation()
 
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route path="login" element={<AdminLogin />} />
-        {/* Placeholder routes until we build the actual pages */}
-        <Route path="dashboard" element={<DashboardView />} />
-        <Route path="orders" element={<OrderManagement />} />
-        <Route path="dishes" element={<DishManagement />} />
-        <Route path="categories" element={<CategoryManagement />} />
-        <Route path="settings" element={<SettingsView />} />
-      </Route>
-    </Routes>
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+      >
+        <Routes location={location} key={location.pathname}>
+          <Route element={<CustomerLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/menu" element={<MenuPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="login" element={<AdminLogin />} />
+            <Route path="dashboard" element={<DashboardView />} />
+            <Route path="orders" element={<OrderManagement />} />
+            <Route path="dishes" element={<DishManagement />} />
+            <Route path="categories" element={<CategoryManagement />} />
+            <Route path="settings" element={<SettingsView />} />
+          </Route>
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AppContent />
     </BrowserRouter>
   )
